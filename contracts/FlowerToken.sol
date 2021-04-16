@@ -1,0 +1,58 @@
+pragma solidity ^0.6.8;
+
+import "./Metadata.sol";
+import "./buyable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+/**
+ * The FlowerToken contract does this and that...
+ */
+contract FlowerToken is ERC721, Ownable {
+
+    Metadata public metadata;
+    ERC721Basic public legacy;
+
+    mapping(uint256 => bool) public converted;
+    
+    constructor(Metadata _metadata, ERC721Basic _legacy) public ERC721("Terra0 Flower Token", "Tr0") {
+        metadata = _metadata;
+        legacy = _legacy;
+        for (uint i = 1; i < 99; i++) {
+            _mint(legacy.ownerOf(i), i);
+        }
+    }
+
+    function convertToNew(uint256 tokenId) public {
+        legacy.transferFrom(msg.sender, address(this), tokenId);
+        converted[tokenId] = true;
+        address currentOwner = ownerOf(tokenId);
+        if (currentOwner != msg.sender) {
+            _transfer(currentOwner, msg.sender, tokenId);
+        }
+    }
+
+    function convertToOld(uint256 tokenId) public {
+        require(ownerOf(tokenId) == msg.sender, "Can't convert flower you don't own");
+        _transfer(msg.sender, address(this), tokenId);
+        legacy.transferFrom(address(this), msg.sender, tokenId);
+    }
+
+    /**
+     * @dev See {IERC721-transferFrom}.
+     */
+    function transferFrom(address from, address to, uint256 tokenId) public virtual override {
+        require(converted[tokenId], "Must convert original flower");
+        //solhint-disable-next-line max-line-length
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
+
+        _transfer(from, to, tokenId);
+    }
+
+    function updateMetadata(Metadata _metadata) public onlyOwner {
+        metadata = _metadata;
+    }
+    function tokenURI(uint256 _tokenId) public override view returns (string memory _infoUrl) {
+        return Metadata(metadata).tokenURI(_tokenId);
+    }
+}
