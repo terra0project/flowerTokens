@@ -30,7 +30,10 @@
     "truffle-hdwallet-provider": "^1.0.0-web3one.3"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^3.4.1"
+    "@openzeppelin/contracts": "^3.4.1",
+    "@openzeppelin/test-helpers": "^0.5.13",
+    "@truffle/hdwallet-provider": "^1.4.3",
+    "chai": "^4.3.4"
   },
   "repository": {
     "type": "git",

@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
+ * Written by billyrennekamp & small changes by paul & tested max
  * The FlowerToken contract does this and that...
  */
 contract FlowerToken is ERC721, Ownable {
@@ -14,7 +15,7 @@ contract FlowerToken is ERC721, Ownable {
     ERC721Basic public legacy;
 
     mapping(uint256 => bool) public converted;
-    
+
     constructor(Metadata _metadata, ERC721Basic _legacy) public ERC721("Terra0 Flower Token", "Tr0") {
         metadata = _metadata;
         legacy = _legacy;
