@@ -7,8 +7,7 @@ const Buyable = artifacts.require('buyable');
 const Metadata = artifacts.require('Metadata');
 const InfrastructurePool = artifacts.require('infrastructurePool')
 const { toWei } = web3.utils;
-// const { expect } = require('chai');
-// const { constants, expectRevert, expectEvent } = require('@openzeppelin/test-helpers');
+
 
 contract('FlowerToken', (accounts) => {
     let flowertoken;

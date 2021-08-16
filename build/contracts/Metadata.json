@@ -18,7 +18,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -37,7 +38,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.8+commit.0bbfe453\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"toBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"b\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"tokenURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"_infoUrl\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Metadata.sol\":\"Metadata\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Metadata.sol\":{\"keccak256\":\"0x97b0d75722b1a95043e6e98e0ed307e83a62e2d41a4f4a91fb33fd5d1657a74b\",\"urls\":[\"bzz-raw://f6b235b88fe9c7eb95450c9d7e63911e75f187bfb4306a6162fe33cd6e8fb938\",\"dweb:/ipfs/QmPzUs5E9bxcG42eWfhV3grpL2pUVP1mh9Jnr5pJthoKfz\"]},\"project:/contracts/helpers/strings.sol\":{\"keccak256\":\"0x473771ad289439ee74482daa49efb7b41d7c5fb65a3f69c09b57019c4b01572a\",\"urls\":[\"bzz-raw://87bef192a53518c29fc91fd38703817d411a5ac1f9c05aa7d952f971f507b232\",\"dweb:/ipfs/QmSyPKMFo6oqAREevYRi9nosCDqMtYtYsy1TpKiYXBvrsB\"]}},\"version\":1}",
@@ -4170,12 +4172,13 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x4adFc18fd982295059E80ef0D10C5EFbA9C5C089",
-      "transactionHash": "0xfa87d9bad00ba480dc9f53776827449cfba7d64e9670dd03e1f61d2eccd6f985"
+      "address": "0xa5B97515783F395a95335c8F4106D1Ed7DAab6e2",
+      "transactionHash": "0x3a6c2291985829911f04eedc121369c9d3778f1e9f18493878448fc8b48405f6"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-08-16T18:11:39.020Z",
+  "updatedAt": "2021-08-16T23:27:04.926Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

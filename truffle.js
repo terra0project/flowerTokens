@@ -54,7 +54,9 @@ module.exports = {
           1
         )
       },
-      network_id: 42
+      network_id: 42,
+      gas: 29970676,
+      gasPrice: 80000000000, // 200 GWEI
       // gas: 5561260
     },
     rinkeby: {
@@ -66,10 +68,9 @@ module.exports = {
            providerOrUrl: 'https://rinkeby.infura.io/v3/' + String(process.env.INFURA_API_KEY)
            }
          );
-     },
+      },
       network_id: 4,
-  // gas: 4700000,
-      gas: 61000000,
+      gas: 29970676,
       gasPrice: 80000000000, // 200 GWEI
       skipDryRun: true
    },
