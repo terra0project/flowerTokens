@@ -2,6 +2,7 @@ require('dotenv').config()
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 module.exports = {
+  plugins: ["solidity-coverage"],
   compilers: {
     solc: {
       version: "0.6.8",
@@ -18,7 +19,7 @@ module.exports = {
       },
       host: 'localhost',
       port: 9545,
-      network_id: 4447
+      network_id: 5557
     },
     ganache: {
       provider() {

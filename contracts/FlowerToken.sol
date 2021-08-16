@@ -5,6 +5,7 @@ import "./buyable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+
 /**
  * Written by billyrennekamp & small changes by paul & tested max
  * The FlowerToken contract does this and that...
@@ -14,27 +15,48 @@ contract FlowerToken is ERC721, Ownable {
     Metadata public metadata;
     ERC721Basic public legacy;
 
+    event minted(
+        uint256 tokenid
+    );
+
     mapping(uint256 => bool) public converted;
 
     constructor(Metadata _metadata, ERC721Basic _legacy) public ERC721("Terra0 Flower Token", "Tr0") {
         metadata = _metadata;
         legacy = _legacy;
-        for (uint i = 1; i < 99; i++) {
-            _mint(legacy.ownerOf(i), i);
-        }
+        // for (uint i = 1; i < 99; i++) {
+        //     _mint(legacy.ownerOf(i), i);
+        // }
     }
 
     function convertToNew(uint256 tokenId) public {
-        legacy.transferFrom(msg.sender, address(this), tokenId);
-        converted[tokenId] = true;
-        address currentOwner = ownerOf(tokenId);
-        if (currentOwner != msg.sender) {
-            _transfer(currentOwner, msg.sender, tokenId);
+        require(legacy.ownerOf(tokenId) == msg.sender, "FlowerToken: covertToOld(): you can't convert flower you don't own");
+        // check if token has already been converted 
+        bool exists = _exists(tokenId);
+        // if true: mint & transfer 
+        if (exists == false) {
+            _mint(legacy.ownerOf(tokenId), tokenId);
+            emit minted(tokenId);
+            legacy.transferFrom(msg.sender, address(this), tokenId);
+            converted[tokenId] = true;
+            address currentOwner = ownerOf(tokenId);
+            if (currentOwner != msg.sender) {
+                _transfer(currentOwner, msg.sender, tokenId);
+            }
+        // else: just transfer 
+        } else {
+            legacy.transferFrom(msg.sender, address(this), tokenId);
+            converted[tokenId] = true;
+            address currentOwner = ownerOf(tokenId);
+            if (currentOwner != msg.sender) {
+                _transfer(currentOwner, msg.sender, tokenId);
+            }
         }
     }
 
     function convertToOld(uint256 tokenId) public {
-        require(ownerOf(tokenId) == msg.sender, "Can't convert flower you don't own");
+        require(ownerOf(tokenId) == msg.sender, "FlowerToken: covertToOld(): you can't convert flower you don't own");
+        require(converted[tokenId] == true, "Flowertoken: covertToOld(): flower already old token type");
         _transfer(msg.sender, address(this), tokenId);
         legacy.transferFrom(address(this), msg.sender, tokenId);
     }
