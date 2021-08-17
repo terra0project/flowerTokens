@@ -54,7 +54,7 @@ contract('FlowerToken', (accounts) => {
                     "FlowerToken: covertToOld(): you can't convert flower you don't own"
                 );
             });
-            it("doesn't mint a new token if it already exists", async () => {
+            it("doesn't if it already exists", async () => {
                 expect((await legacy.balanceOf(accounts[2])).toString()).to.equal('1');
                 expect((await flowertoken.balanceOf(accounts[2])))
                 await legacy.approve(flowertoken.address,2, { from: accounts[2] });
@@ -66,6 +66,39 @@ contract('FlowerToken', (accounts) => {
                 await legacy.approve(flowertoken.address,2, { from: accounts[2] });
                 await flowertoken.convertToNew(2, { from: accounts[2] });
             });
+        });
+        context("» convertToOld()", () => {
+            it("returns the legacy token to the owner", async () => {
+                expect((await legacy.balanceOf(accounts[0])).toString()).to.equal('0');
+                expect((await flowertoken.balanceOf(accounts[0])).toString()).to.equal('1');
+                await flowertoken.convertToOld(1);
+                expect((await legacy.balanceOf(accounts[0])).toString()).to.equal('1');
+                expect((await flowertoken.balanceOf(accounts[0])).toString()).to.equal('0');
+            });
+            it("doesn't if the caller doesn't own a new flowertoken", async () => {
+                expect((await legacy.balanceOf(accounts[1])).toString()).to.equal('0');
+                await expectRevert(
+                    flowertoken.convertToOld(2, { from: accounts[1] }),
+                    "FlowerToken: covertToOld(): you can't convert flower you don't own"
+                );            
+            });
+        }); 
+        context(" generic", () => {
+            it('returns token data', async () => {
+                expect(await flowertoken.tokenURI(1)).to.equal("https://cert-tester.club/ipfs/QmNThFoEcAnjUiuJoSs5gq8xRiqctNS5dfjCFWuhUSKJ4v/1.json");
+            });
+            it('only owner can set a new metadata contract', async () => {
+                let newMetadata = await Metadata.new();
+                await expectRevert(
+                    flowertoken.updateMetadata(newMetadata.address,{from:accounts[1]}),
+                    'Ownable: caller is not the owner'
+                );
+            });
+            it('sets a new metadata contract', async () => {
+                let newMetadata = await Metadata.new();
+                await flowertoken.updateMetadata(newMetadata.address);
+                expect(await flowertoken.metadata()).to.equal(newMetadata.address);
+            });        
         });
     });
 
