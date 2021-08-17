@@ -24,7 +24,6 @@ contract('FlowerToken', (accounts) => {
         // console.log(`TEST METADATA ADDRESS: ${metadata.address}`)
         flowertoken = await FlowerToken.new(metadata.address,legacy.address);
         // console.log(`TEST FLOWERTOKENNEW ADDRESS: ${flowertoken.address}`)
-
      });
 
      context("» contract deploys properly", () => {
