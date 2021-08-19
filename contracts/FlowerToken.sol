@@ -27,7 +27,7 @@ contract FlowerToken is ERC721, Ownable {
     }
 
     function convertToNew(uint256 tokenId) public {
-        require(legacy.ownerOf(tokenId) == msg.sender, "FlowerToken: covertToOld(): you can't convert flower you don't own");
+        require(legacy.ownerOf(tokenId) == msg.sender, "FlowerToken: covertToNew(): you can't convert flower you don't own");
         // check if token has already been converted 
         bool exists = _exists(tokenId);
         // if true: mint & transfer 
