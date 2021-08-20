@@ -17,7 +17,7 @@ const flowertoken = await FlowerToken.at(contracts.rinkeby.FLOWERTOKENS);
         console.log(user);
 
         let i; 
-        for(i=2;i<30;i++) {
+        for(i=13;i<23;i++) {
             console.log('minting legacy');
             await legacy._mint(user, i, { from: user }); 
             console.log('legacy minted, approving legacy -> flowertokens transfer');
