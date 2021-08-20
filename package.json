@@ -13,8 +13,8 @@
     "lint:fix": "solium  --dir contracts/ --fix",
     "flatten": "./flatten.sh",
     "fivepointzero": "prettier --write --tab-width 4 --print-width 140 'contracts/**/*.sol'",
-    "mint-sell-rinkeby": "npx truffle exec scripts/mint-to-sell.js --network rinkeby",
-    "mint-mass": "npx truffle exec scripts/mint-mass.js --network rinkeby",
+    "mint-sell-rinkeby": "npx truffle exec scripts/rinkeby/mint-to-sell.js --network rinkeby",
+    "mint-mass-rinkeby": "npx truffle exec scripts/rinkeby/mint-mass.js --network rinkeby",
     "coverage": "truffle run coverage"
   },
   "main": "index.js",

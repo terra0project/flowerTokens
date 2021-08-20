@@ -1,7 +1,7 @@
 const Metadata = artifacts.require('./Metadata.sol');
 const FlowerToken = artifacts.require('./FlowerToken.sol');
 const LegacyFlowerToken = artifacts.require('./buyable.sol');
-const contracts = require('../contractAddresses.json');
+const contracts = require('../../contractAddresses.json');
 require('dotenv').config()
 
 module.exports = async function(callback) {
@@ -17,7 +17,7 @@ const flowertoken = await FlowerToken.at(contracts.rinkeby.FLOWERTOKENS);
         console.log(user);
 
         let i; 
-        for(i=13;i<23;i++) {
+        for(i=50;i<52;i++) {
             console.log('minting legacy');
             await legacy._mint(user, i, { from: user }); 
             console.log('legacy minted, approving legacy -> flowertokens transfer');
