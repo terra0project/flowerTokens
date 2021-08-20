@@ -1,7 +1,8 @@
 require('dotenv').config()
-const HDWalletProvider = require('truffle-hdwallet-provider')
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 module.exports = {
+  plugins: ["solidity-coverage"],
   compilers: {
     solc: {
       version: "0.6.8",
@@ -18,32 +19,32 @@ module.exports = {
       },
       host: 'localhost',
       port: 9545,
-      network_id: 4447
+      network_id: 5557
     },
     ganache: {
       provider() {
         return new HDWalletProvider(
-          process.env.GANACHE_MNEMONIC,
-          'http://localhost:7545'
+          process.env.GANACHE_PRIV,
+          'http://localhost:8545'
         )
       },
       host: 'localhost',
-      port: 7545,
-      network_id: 5777,
-      gas: 10000000,
-      gasPrice: 1000000000
+      port: 8545,
+      network_id: "*",
+      gas: 60000000,
     },
     mainnet: {
       provider() {
-        // using wallet at index 1 ----------------------------------------------------------------------------------------v
+        // using wallet at index 0 ----------------------------------------------------------------------------------------v
         return new HDWalletProvider(
-          process.env.TESTNET_MNEMONIC,
+          process.env.MAINNET_MNEMONIC,
           'https://mainnet.infura.io/v3/' + process.env.INFURA_API_KEY,
-          1
+          0
         )
       },
-      network_id: 1
+      network_id: 1,
       // gas: 5561260
+      gasPrice: 65000000000, // 65 GWEI
     },
     kovan: {
       provider() {
@@ -54,20 +55,27 @@ module.exports = {
           1
         )
       },
-      network_id: 42
+      network_id: 42,
+      gas: 29970676,
+      gasPrice: 80000000000, // 200 GWEI
       // gas: 5561260
     },
     rinkeby: {
       provider() {
-        return new HDWalletProvider(
-          process.env.TESTNET_MNEMONIC,
-          'https://rinkeby.infura.io/v3/' + process.env.INFURA_API_KEY
-        )
+        return new HDWalletProvider({
+           mnemonic: {
+              phrase: String(process.env.RINKEBYSEEDPHASE),
+           },
+           providerOrUrl: 'https://rinkeby.infura.io/v3/' + String(process.env.INFURA_API_KEY)
+           }
+         );
       },
       network_id: 4,
-      // gas: 4700000,
-      gasPrice: 200000000000 // 200 GWEI
-    },
+      gas: 29970676,
+      gasPrice: 80000000000, // 200 GWEI
+      skipDryRun: true
+   },
+
     ropsten: {
       provider() {
         return new HDWalletProvider(
