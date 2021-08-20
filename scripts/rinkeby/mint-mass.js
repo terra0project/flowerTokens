@@ -27,15 +27,6 @@ const flowertoken = await FlowerToken.at(contracts.rinkeby.FLOWERTOKENS);
             console.log('token converted to new token!')
         }
 
-        // console.log('minting legacy');
-        // await legacy._mint(user, 1, { from: user }); 
-        // console.log('legacy minted, approving legacy -> flowertokens transfer');
-        // await legacy.approve(flowertoken.address,1, { from: user });
-        // console.log('approved, converting token');
-        // let tx = await flowertoken.convertToNew(1, { from: user });
-        // console.log('token converted to new token!')
-        // console.log(tx); 
-
     } catch (error) {
         console.log(error);
     }
@@ -44,10 +35,4 @@ const flowertoken = await FlowerToken.at(contracts.rinkeby.FLOWERTOKENS);
 
 }
 
-/*
-- mint legacy 
-- approve newone to be sold by newTokenScripts 
-- convertToNew
-- check opensea 
-*/
 

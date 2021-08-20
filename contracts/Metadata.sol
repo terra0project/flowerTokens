@@ -10,7 +10,7 @@ contract Metadata {
     using strings for *;
 
     function tokenURI(uint _tokenId) public pure returns (string memory _infoUrl) {
-        string memory base = "https://ipfs.terra0.org/ipfs/QmaGev3DaQdzvoFRADQneNndv7tZQVY3LsPnat9EHK4hF3/";
+        string memory base = "https://ipfs.terra0.org/ipfs/QmXiLsQMyE2DR5dRapKr8VrLXmFQpm6TCMixbhoZ1Gnors/";
         string memory id = uint2str(_tokenId);
         string memory file = ".json";
         string memory firstpart = base.toSlice().concat(id.toSlice());

@@ -12,10 +12,6 @@ const flowertoken = await FlowerToken.at(contracts.rinkeby.FLOWERTOKENS);
 
     try {
 
-        // console.log(legacy.address);
-        // console.log(flowertoken.address); 
-        // console.log(user);
-
         console.log('minting legacy');
         await legacy._mint(user, 1, { from: user }); 
         console.log('legacy minted, approving legacy -> flowertokens transfer');
@@ -32,11 +28,4 @@ const flowertoken = await FlowerToken.at(contracts.rinkeby.FLOWERTOKENS);
     callback();
 
 }
-
-/*
-- mint legacy 
-- approve newone to be sold by newTokenScripts 
-- convertToNew
-- check opensea 
-*/
 

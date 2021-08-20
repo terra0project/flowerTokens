@@ -15,6 +15,7 @@
     "fivepointzero": "prettier --write --tab-width 4 --print-width 140 'contracts/**/*.sol'",
     "mint-sell-rinkeby": "npx truffle exec scripts/rinkeby/mint-to-sell.js --network rinkeby",
     "mint-mass-rinkeby": "npx truffle exec scripts/rinkeby/mint-mass.js --network rinkeby",
+    "update-metadata-mainnet": "npx truffle exec scripts/mainnet/switch-metadata.js --network mainnet",
     "coverage": "truffle run coverage"
   },
   "main": "index.js",
