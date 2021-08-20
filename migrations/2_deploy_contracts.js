@@ -7,8 +7,12 @@ let _ = '        '
 module.exports = (deployer, helper, accounts) => {
   deployer.then(async () => {
 
+    /* MAINNET LEGACY DEPLOY */
+    // const legacy = await LegacyFlowerToken.at("0x43C9B7B7cE699aC2c1D3aaD3B5A78274A0f9C86d"); 
+
     try {
 
+      /* TESTING LEGACY DEPLOY */
       // deploy legacy 
       await deployer.deploy(LegacyFlowerToken)
       let legacy = await LegacyFlowerToken.deployed()

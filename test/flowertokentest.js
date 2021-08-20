@@ -51,7 +51,7 @@ contract('FlowerToken', (accounts) => {
                 expect((await legacy.balanceOf(accounts[1])).toString()).to.equal('0');
                 await expectRevert(
                     flowertoken.convertToNew(2, { from: accounts[1] }),
-                    "FlowerToken: covertToOld(): you can't convert flower you don't own"
+                    "FlowerToken: covertToNew(): you can't convert flower you don't own"
                 );
             });
             it("doesn't if it already exists", async () => {
@@ -85,7 +85,7 @@ contract('FlowerToken', (accounts) => {
         }); 
         context(" generic", () => {
             it('returns token data', async () => {
-                expect(await flowertoken.tokenURI(1)).to.equal("https://cert-tester.club/ipfs/QmNThFoEcAnjUiuJoSs5gq8xRiqctNS5dfjCFWuhUSKJ4v/1.json");
+                expect(await flowertoken.tokenURI(1)).to.equal("https://ipfs.terra0.org/ipfs/QmaGev3DaQdzvoFRADQneNndv7tZQVY3LsPnat9EHK4hF3/1.json");
             });
             it('only owner can set a new metadata contract', async () => {
                 let newMetadata = await Metadata.new();
