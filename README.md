@@ -1,4 +1,4 @@
-# flowerTokens
+# FlowerTokens
 
 This repo contains the code for the Flowertokens Wrapper ERC721 token contract. 
 
