@@ -21,7 +21,7 @@ contract FlowerToken is ERC721, Ownable {
 
     mapping(uint256 => bool) public converted;
 
-    constructor(Metadata _metadata, ERC721Basic _legacy) public ERC721("Terra0 Flower Token", "Tr0") {
+    constructor(Metadata _metadata, ERC721Basic _legacy) public ERC721("terra0 Flowertoken", "tr0") {
         metadata = _metadata;
         legacy = _legacy;
     }
